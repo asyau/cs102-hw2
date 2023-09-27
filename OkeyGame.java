@@ -66,7 +66,11 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return null;
+        Tile tileToPick = tiles[currentTile];
+        players[currentPlayerIndex].addTile(tileToPick);
+        currentTile++;
+
+        return tileToPick.toString();
     }
 
     /*
