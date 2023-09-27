@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 public class OkeyGame {
 
     Player[] players;
@@ -42,7 +45,9 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        return null;
+        players[currentPlayerIndex].addTile(lastDiscardedTile);
+
+        return lastDiscardedTile.toString();
     }
 
     /*
@@ -58,7 +63,7 @@ public class OkeyGame {
      * TODO: should randomly shuffle the tiles array before game starts
      */
     public void shuffleTiles() {
-
+        Collections.shuffle(Arrays.asList(tiles));
     }
 
     /*
@@ -106,7 +111,7 @@ public class OkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-
+        lastDiscardedTile = players[currentPlayerIndex].getAndRemoveTile(tileIndex);
     }
 
     public void currentPlayerSortTilesColorFirst() {
