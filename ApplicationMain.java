@@ -113,13 +113,14 @@ public class ApplicationMain {
                     playerChoice = sc.nextInt();
 
 
-                    while(playerChoice<0||playerChoice>14){
-                         playerChoice = sc.nextInt();
-
-                    }
+                   
 
 
                     // TODO: make sure the given index is correct, should be 0 <= index <= 14
+                     while(playerChoice<0||playerChoice>14){
+                         playerChoice = sc.nextInt();
+
+                    }
 
                     game.discardTile(playerChoice);
                     game.passTurnToNextPlayer();
