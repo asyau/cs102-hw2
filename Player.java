@@ -77,7 +77,13 @@ public class Player {
      * TODO: removes and returns the tile in given index
      */
     public Tile getAndRemoveTile(int index) {
-        return null;
+        Tile tempTile = playerTiles[index];
+        for(int i = index; i < playerTiles.length; i++){
+            if(i < playerTiles.length - 1){
+                playerTiles[i]= playerTiles[i++];
+            }
+        }
+        return tempTile;
     }
 
     /*
@@ -99,7 +105,21 @@ public class Player {
      * you are allowed to use Collections.sort method
      */
     public void sortTilesColorFirst() {
-        
+        boolean isSorted = false;
+        while(!isSorted){
+            boolean swapped = false;
+            for (int i = 0; i < this.playerTiles.length - 1 ; i ++){
+                if( playerTiles[i].compareToColorFirst(playerTiles[i+1]) == 1){
+                    Tile tempTile = playerTiles[i];
+                    playerTiles[i] = playerTiles[i+1];
+                    playerTiles[i+1] = tempTile;
+                    swapped = true;
+                }
+            }
+            if(!swapped){
+                isSorted = true;
+            }
+        }
     }
 
     /*
