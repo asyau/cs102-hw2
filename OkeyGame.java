@@ -36,7 +36,14 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
     public void distributeTilesToPlayers() {
+        int currentDistributingPlayer = 0;
+        for (int i = 0; i < 57; i++) {
+            players[currentDistributingPlayer].addTile(tiles[i]);
+            if (i == 15 || i == 29 || i== 33) {
+                currentDistributingPlayer ++;
+            }
 
+        }
     }
 
     /*
