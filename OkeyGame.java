@@ -10,6 +10,8 @@ public class OkeyGame {
 
     int currentPlayerIndex = 0;
 
+    int currentTile = 0;
+
     public OkeyGame() {
         players = new Player[4];
     }
@@ -37,11 +39,12 @@ public class OkeyGame {
      */
     public void distributeTilesToPlayers() {
         int currentDistributingPlayer = 0;
-        for (int i = 0; i < 57; i++) {
-            players[currentDistributingPlayer].addTile(tiles[i]);
-            if (i == 15 || i == 29 || i== 33) {
+        while (currentTile < 57) {
+            players[currentDistributingPlayer].addTile(tiles[currentTile]);
+            if (currentTile == 15 || currentTile == 29 || currentTile == 43) {
                 currentDistributingPlayer ++;
             }
+            currentTile ++;
 
         }
     }
