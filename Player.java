@@ -130,7 +130,10 @@ public class Player {
      * have more than 15 tiles at a time
      */
     public void addTile(Tile t) {
-
+        if(numberOfTiles <= 14){
+            playerTiles[numberOfTiles] = t;
+        }
+        numberOfTiles++;
     }
 
     /*
