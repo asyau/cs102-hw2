@@ -51,15 +51,23 @@ public class Player {
      */
     public int findLongestChainOf(Tile t) {
         int tilePosition;
+        boolean tileExist = false;
 
         sortTilesColorFirst();
         tilePosition = findPositionOfTile(t);
+
+        if (tilePosition == -1) {
+            tileExist = true;
+            this.addTile(t);
+            sortTilesColorFirst();
+            tilePosition = findPositionOfTile(t);
+        }
 
         // TODO: find the longest chain starting from tilePosition going left and right
         int longestChainColorFirst = 0;
         if(tilePosition != playerTiles.length -1){
             boolean stop = false;
-            for(int i = tilePosition - 1; i < playerTiles.length && !stop;i ++){
+            for(int i = tilePosition; i < numberOfTiles - 1 && !stop;i ++){
                 if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainColorFirst ++;
                 else{
@@ -69,8 +77,8 @@ public class Player {
         }
         if(tilePosition != 0){
             boolean stop = false;
-            for(int i = tilePosition - 1; i > 0 && !stop ;i --){
-                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
+            for(int i = tilePosition; i > 0 && !stop ;i --){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i-1]) == 1) 
                     longestChainColorFirst ++;
                 else{
                     stop = true;
@@ -84,7 +92,7 @@ public class Player {
         int longestChainValueFirst = 0;
         if(tilePosition != playerTiles.length -1){
             boolean stop = false;
-            for(int i = tilePosition - 1; i < playerTiles.length && !stop;i ++){
+            for(int i = tilePosition; i < numberOfTiles - 1 && !stop;i ++){
                 if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainValueFirst ++;
                 else{
@@ -94,7 +102,7 @@ public class Player {
         }
         if(tilePosition != 0){
             boolean stop = false;
-            for(int i = tilePosition - 1; i > 0 && !stop ;i --){
+            for(int i = tilePosition; i > 0 && !stop ;i --){
                 if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainValueFirst ++;
                 else{
@@ -103,12 +111,20 @@ public class Player {
             }
         }
 
+        if (tileExist) {
+            this.getAndRemoveTile(tilePosition);
+            this.sortTilesColorFirst();
+        }
+
         if(longestChainColorFirst > longestChainValueFirst) {
             return longestChainColorFirst;
         }
         else{
             return longestChainValueFirst;
         }
+
+
+
     }
 
     /*
@@ -150,7 +166,7 @@ public class Player {
         boolean isSorted = false;
         while(!isSorted){
             boolean swapped = false;
-            for (int i = 0; i < this.playerTiles.length - 1 ; i ++){
+            for (int i = 0; i < this.numberOfTiles - 1 ; i ++){
                 if( playerTiles[i].compareToColorFirst(playerTiles[i+1]) == 1){
                     Tile tempTile = playerTiles[i];
                     playerTiles[i] = playerTiles[i+1];
@@ -177,7 +193,7 @@ public class Player {
         boolean isSorted = false;
         while(!isSorted){
             boolean swapped = false;
-            for (int i = 0; i < this.playerTiles.length - 1 ; i ++){
+            for (int i = 0; i < this.numberOfTiles - 1 ; i ++){
                 if( playerTiles[i].compareToValueFirst(playerTiles[i+1]) == 1){
                     Tile tempTile = playerTiles[i];
                     playerTiles[i] = playerTiles[i+1];
