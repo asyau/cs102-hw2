@@ -170,7 +170,21 @@ public class Player {
      * you are allowed to use Collections.sort method
      */
     public void sortTilesValueFirst() {
-
+        boolean isSorted = false;
+        while(!isSorted){
+            boolean swapped = false;
+            for (int i = 0; i < this.playerTiles.length - 1 ; i ++){
+                if( playerTiles[i].compareToValueFirst(playerTiles[i+1]) == 1){
+                    Tile tempTile = playerTiles[i];
+                    playerTiles[i] = playerTiles[i+1];
+                    playerTiles[i+1] = tempTile;
+                    swapped = true;
+                }
+            }
+            if(!swapped){
+                isSorted = true;
+            }
+        }
     }
 
     public int findPositionOfTile(Tile t) {
