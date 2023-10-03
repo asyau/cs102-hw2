@@ -138,7 +138,7 @@ public class Player {
             }
         }
 
-        playerTiles[14] = new Tile(14,'K') ;
+        playerTiles[14] = new Tile(99,'K') ;
 
         return tempTile;
     }
