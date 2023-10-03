@@ -41,7 +41,7 @@ public class OkeyGame {
         int currentDistributingPlayer = 0;
         while (currentTile < 57) {
             players[currentDistributingPlayer].addTile(tiles[currentTile]);
-            if (currentTile == 15 || currentTile == 29 || currentTile == 43) {
+            if (currentTile == 14 || currentTile == 28 || currentTile == 42) {
                 currentDistributingPlayer ++;
             }
             currentTile ++;

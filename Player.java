@@ -134,9 +134,12 @@ public class Player {
         Tile tempTile = playerTiles[index];
         for(int i = index; i < playerTiles.length; i++){
             if(i < playerTiles.length - 1){
-                playerTiles[i]= playerTiles[i++];
+                playerTiles[i]= playerTiles[i+1];
             }
         }
+
+        playerTiles[14] = new Tile(14,'K') ;
+
         return tempTile;
     }
 
@@ -149,6 +152,9 @@ public class Player {
         if(numberOfTiles <= 14){
             playerTiles[numberOfTiles] = t;
             numberOfTiles++;
+        }
+        else {
+            playerTiles[14] = t;
         }
         
     }
