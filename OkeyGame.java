@@ -93,6 +93,25 @@ public class OkeyGame {
      * for this simplified version
      */
     public boolean didGameFinish() {
+        int threeLength = 0;
+        int fourLength = 0;
+        int fiveLength = 0;
+
+        for (int index : players[currentPlayerIndex].calculateLongestChainPerTile()) {
+            if (index >= 3) {
+                threeLength++;
+            }
+            else if (index >= 4) {
+                fourLength++;
+            }
+            else if (index >= 5) {
+                fiveLength++;
+            }
+        }
+        if ((fourLength == 8 && threeLength >= 14) || (fiveLength == 5 && threeLength >= 14)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -104,6 +123,14 @@ public class OkeyGame {
      * the current status. Print whether computer picks from tiles or discarded ones.
      */
     public void pickTileForComputer() {
+        Player currentPlayer = players[currentPlayerIndex];
+        if (currentPlayer.findLongestChainOf(lastDiscardedTile) >= 3 && !doesPlayerTilesContain(currentPlayer, lastDiscardedTile)) {
+            getLastDiscardedTile();
+        }
+        else {
+            getTopTile();
+        }
+
 
     }
 
@@ -116,7 +143,16 @@ public class OkeyGame {
      * known by other players
      */
     public void discardTileForComputer() {
-
+        int shortestChain = 15;
+        int currentDiscardingTileIndex = 0;
+        for (int i = 0; i < 15; i++) {
+            if (shortestChain > players[currentPlayerIndex].findLongestChainOf(players[currentPlayerIndex].playerTiles[i])) {
+                shortestChain = players[currentPlayerIndex].findLongestChainOf(players[currentPlayerIndex].playerTiles[i]);
+                currentDiscardingTileIndex = i;
+            }
+        }
+        discardTile(currentDiscardingTileIndex);
+        
     }
 
     /*
@@ -126,6 +162,15 @@ public class OkeyGame {
      */
     public void discardTile(int tileIndex) {
         lastDiscardedTile = players[currentPlayerIndex].getAndRemoveTile(tileIndex);
+    }
+
+    public boolean doesPlayerTilesContain(Player player, Tile givenTile){
+        for (Tile tile  : player.getTiles()) {
+            if (tile.toString().equals(givenTile.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void currentPlayerSortTilesColorFirst() {
