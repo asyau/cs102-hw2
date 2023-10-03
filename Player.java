@@ -103,7 +103,7 @@ public class Player {
         if(tilePosition != 0){
             boolean stop = false;
             for(int i = tilePosition; i > 0 && !stop ;i --){
-                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i-1]) == 1)
                     longestChainValueFirst ++;
                 else{
                     stop = true;
