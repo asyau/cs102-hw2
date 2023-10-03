@@ -57,7 +57,26 @@ public class Player {
 
         // TODO: find the longest chain starting from tilePosition going left and right
         int longestChainColorFirst = 0;
-
+        if(tilePosition != playerTiles.length -1){
+            boolean stop = false;
+            for(int i = tilePosition; i < playerTiles.length && !stop;i ++){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+i]) == 1)
+                    longestChainColorFirst ++;
+                else{
+                    stop = true;
+                }
+            }
+        }
+        if(tilePosition != 0){
+            boolean stop = false;
+            for(int i = tilePosition; i > 0 && !stop ;i --){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+i]) == 1)
+                    longestChainColorFirst ++;
+                else{
+                    stop = true;
+                }
+            }
+        }
         sortTilesValueFirst();
         tilePosition = findPositionOfTile(t);
         
