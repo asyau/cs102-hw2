@@ -108,7 +108,7 @@ public class OkeyGame {
                 fiveLength++;
             }
         }
-        if ((fourLength == 8 && threeLength >= 14) || (fiveLength == 5 && threeLength >= 14)) {
+        if ((fourLength == 8 && threeLength >= 6) || (fiveLength == 5 && threeLength >= 9)) {
             return true;
         }
 
@@ -116,7 +116,7 @@ public class OkeyGame {
     }
 
     /*
-    
+
      * TODO: Pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
