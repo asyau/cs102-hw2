@@ -59,8 +59,8 @@ public class Player {
         int longestChainColorFirst = 0;
         if(tilePosition != playerTiles.length -1){
             boolean stop = false;
-            for(int i = tilePosition; i < playerTiles.length && !stop;i ++){
-                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+i]) == 1)
+            for(int i = tilePosition - 1; i < playerTiles.length && !stop;i ++){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainColorFirst ++;
                 else{
                     stop = true;
@@ -69,8 +69,8 @@ public class Player {
         }
         if(tilePosition != 0){
             boolean stop = false;
-            for(int i = tilePosition; i > 0 && !stop ;i --){
-                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+i]) == 1)
+            for(int i = tilePosition - 1; i > 0 && !stop ;i --){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainColorFirst ++;
                 else{
                     stop = true;
@@ -84,8 +84,8 @@ public class Player {
         int longestChainValueFirst = 0;
         if(tilePosition != playerTiles.length -1){
             boolean stop = false;
-            for(int i = tilePosition; i < playerTiles.length && !stop;i ++){
-                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+i]) == 1)
+            for(int i = tilePosition - 1; i < playerTiles.length && !stop;i ++){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainValueFirst ++;
                 else{
                     stop = true;
@@ -94,8 +94,8 @@ public class Player {
         }
         if(tilePosition != 0){
             boolean stop = false;
-            for(int i = tilePosition; i > 0 && !stop ;i --){
-                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+i]) == 1)
+            for(int i = tilePosition - 1; i > 0 && !stop ;i --){
+                if(playerTiles[tilePosition].canFormChainWith(playerTiles[i+1]) == 1)
                     longestChainValueFirst ++;
                 else{
                     stop = true;
