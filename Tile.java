@@ -101,6 +101,9 @@ public class Tile {
     }
 
     public String toString() {
+        if (this.value == 99) {
+            return " ";
+        }
         return "" + value + color;
     }
 
